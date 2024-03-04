@@ -69,7 +69,7 @@ public class GameTile : MonoBehaviour
         }
         neighbor.distance = distance + 1;
         neighbor.nextOnPath = this;
-        return neighbor;
+        return neighbor.Content.Type != GameTileContentType.Wall ? neighbor : null; ;
     }
 
     public GameTile GrowPathNorth() => GrowPathTo(north);
@@ -99,5 +99,10 @@ public class GameTile : MonoBehaviour
             nextOnPath == east ? eastRotation :
             nextOnPath == south ? southRotation :
             westRotation;
+    }
+
+    public void HidePath()
+    {
+        arrow.gameObject.SetActive(false);
     }
 }

@@ -1,0 +1,37 @@
+/.vs/Assembly-CSharp.csproj.dtbcache.json
+/.vs/TowerDefenseProto/FileContentIndex/2969db72-f0cf-438c-826b-a461145543be.vsidx
+/Library/EditorInstance.json
+/Logs
+/Temp
+
+#Ignore thumbnails created by Windows
+Thumbs.db
+#Ignore files built by Visual Studio
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+.vs/
+#Nuget packages folder
+packages/
