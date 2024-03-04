@@ -39,6 +39,31 @@ public class Gameboard : MonoBehaviour
         }
     }
 
+    private bool showPaths;
+
+    public bool ShowPaths
+    {
+        get => showPaths;
+        set
+        {
+            showPaths = value;
+            if (showPaths)
+            {
+                foreach (GameTile tile in tiles)
+                {
+                    tile.ShowPath();
+                }
+            }
+            else
+            {
+                foreach (GameTile tile in tiles)
+                {
+                    tile.HidePath();
+                }
+            }
+        }
+    }
+
     public void Initialize(Vector2Int size, GameTileContentFactory contentFactory)
     {
         this.size = size;
@@ -130,9 +155,12 @@ public class Gameboard : MonoBehaviour
             }
         }
 
-        foreach (GameTile tile in tiles)
+        if (showPaths)
         {
-            tile.ShowPath();
+            foreach (GameTile tile in tiles)
+            {
+                tile.ShowPath();
+            }
         }
 
         return true;
@@ -163,11 +191,28 @@ public class Gameboard : MonoBehaviour
                 FindPaths();
             }
         }
-        else
+        else if (tile.Content.Type == GameTileContentType.Empty)
         {
             tile.Content = contentFactory.Get(GameTileContentType.Destination);
             FindPaths();
         }
     }
 
+    public void ToggleWall(GameTile tile)
+    {
+        if (tile.Content.Type == GameTileContentType.Wall)
+        {
+            tile.Content = contentFactory.Get(GameTileContentType.Empty);
+            FindPaths();
+        }
+        else if (tile.Content.Type == GameTileContentType.Empty)
+        {
+            tile.Content = contentFactory.Get(GameTileContentType.Wall);
+            if (!FindPaths())
+            {
+                tile.Content = contentFactory.Get(GameTileContentType.Empty);
+                FindPaths();
+            }
+        }
+    }
 }
