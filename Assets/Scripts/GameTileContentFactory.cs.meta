@@ -7,6 +7,7 @@ MonoImporter:
   - destinationPrefab: {fileID: 1349143584365933363, guid: 7c8591fc347f08a479c5225e9149dfac, type: 3}
   - emptyPrefab: {fileID: 2247491301960958460, guid: 7d5a9c5b38caeb34281729e7a7cc6e74, type: 3}
   - wallPrefab: {fileID: 2829105835309133553, guid: bbf237533b5f74e429eed6ce1469b7d6, type: 3}
+  - spawnPointPrefab: {fileID: 3562996910849472039, guid: db9a826a77d45704491dd582fd10da37, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
