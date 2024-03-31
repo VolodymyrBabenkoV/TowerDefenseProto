@@ -1,11 +1,8 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [CreateAssetMenu]
-public class GameTileContentFactory : ScriptableObject
+public class GameTileContentFactory : GameObjectFactory
 {
-    private Scene contentScene;
-
     [SerializeField]
     GameTileContent destinationPrefab = default;
 
@@ -40,29 +37,8 @@ public class GameTileContentFactory : ScriptableObject
 
     private GameTileContent Get(GameTileContent prefab)
     {
-        GameTileContent instance = Instantiate(prefab);
+        GameTileContent instance = CreateGameObjectInstance(prefab);
         instance.OriginFactory = this;
-        MoveToFactoryScene(instance.gameObject);
         return instance;
-    }
-
-    void MoveToFactoryScene(GameObject obj)
-    {
-        if (!contentScene.isLoaded)
-        {
-            if (Application.isEditor)
-            {
-                contentScene = SceneManager.GetSceneByName(name);
-                if (!contentScene.isLoaded)
-                {
-                    contentScene = SceneManager.CreateScene(name);
-                }
-            }
-            else
-            {
-                contentScene = SceneManager.CreateScene(name);
-            }
-        }
-        SceneManager.MoveGameObjectToScene(obj, contentScene);
     }
 }

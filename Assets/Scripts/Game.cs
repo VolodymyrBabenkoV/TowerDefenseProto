@@ -11,6 +11,14 @@ public class Game : MonoBehaviour
     [SerializeField]
     private GameTileContentFactory tileContentFactory = default;
 
+    [SerializeField]
+    EnemyFactory enemyFactory = default;
+
+    [SerializeField, Range(0.1f, 10f)]
+    float spawnSpeed = 1f;
+
+    float spawnProgress;
+
     void Awake()
     {
         board.Initialize(boardSize, tileContentFactory);
@@ -52,6 +60,21 @@ public class Game : MonoBehaviour
         {
             board.ShowPaths = !board.ShowPaths;
         }
+
+        spawnProgress += spawnSpeed * Time.deltaTime;
+        while (spawnProgress >= 1f)
+        {
+            spawnProgress -= 1f;
+            SpawnEnemy();
+        }
+    }
+
+    void SpawnEnemy()
+    {
+        GameTile spawnPoint =
+            board.GetSpawnPoint(Random.Range(0, board.SpawnPointCount));
+        Enemy enemy = enemyFactory.Get();
+        enemy.SpawnOn(spawnPoint);
     }
 
     void HandleTouch()
