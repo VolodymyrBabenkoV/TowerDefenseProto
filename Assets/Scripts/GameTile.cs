@@ -105,4 +105,6 @@ public class GameTile : MonoBehaviour
     {
         arrow.gameObject.SetActive(false);
     }
+
+    public GameTile NextTileOnPath => nextOnPath;
 }
